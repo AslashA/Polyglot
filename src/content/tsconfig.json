@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig",
+  "compilerOptions": {
+    "types": ["node", "safari-extension"]
+  },
+  "files": ["./*", "../types/*"]
+}

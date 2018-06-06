@@ -27,7 +27,7 @@ function handleMessage(msg: SafariExtensionMessageEvent): void {
 function handleMouseUp(e: MouseEvent): void {
   const panel = document.getElementById(PANEL_ID)
 
-  if (isPanelOpen && !isDescendant(panel, e.target)) {
+  if (isPanelOpen && !isDescendant(panel, <Element>e.target)) {
     removePanel()
   }
 }
@@ -35,11 +35,11 @@ function handleMouseUp(e: MouseEvent): void {
 function handleKeypress(e: KeyboardEvent): void {
   // Check if shortcut key is properly configured
   if (settings.keyValue !== '') {
-    const applyMeta = settings.useMetaKey === 'true' ? e.metaKey : true
-    const applyShift = settings.useShiftKey === 'true' ? e.shiftKey : true
-    const applyCtrl = settings.useCtrlKey === 'true' ? e.ctrlKey : true
-    const applyAlt = settings.useAltKey === 'true' ? e.altKey : true
-    const applyKey = settings.keyValue.charCodeAt(0) === e.keyCode
+    const applyMeta = settings.useMetaKey == true ? e.metaKey : true
+    const applyShift = settings.useShiftKey == true ? e.shiftKey : true
+    const applyCtrl = settings.useCtrlKey == true ? e.ctrlKey : true
+    const applyAlt = settings.useAltKey == true ? e.altKey : true
+    const applyKey = settings.keyValue.charCodeAt(0) == e.keyCode
 
     if (applyMeta && applyShift && applyCtrl && applyAlt && applyKey) {
       e.preventDefault()

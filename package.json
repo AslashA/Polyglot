@@ -2,31 +2,30 @@
   "name": "polyglot",
   "private": true,
   "scripts": {
-    "start": "webpack -w",
-    "build": "webpack",
-    "format": "prettier --write --no-semi --single-quote '{!(node_modules)/**/!(*.entry).{js,jsx},*.js}'"
+    "start": "npm run watch",
+    "watch": "run-p watch:*",
+    "watch:content": "tsc -w -p tsconfig.content.json",
+    "watch:global": "tsc -w -p tsconfig.global.json",
+    "build": "run-p build:*",
+    "build:content": "tsc -p tsconfig.content.json",
+    "build:global": "tsc -p tsconfig.global.json"
   },
   "dependencies": {
-    "whatwg-fetch": "^2.0.1"
+    "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {
-    "@types/node": "^9.6.4",
+    "@types/node": "^10.3.1",
     "@types/safari-extension": "0.0.27",
     "@types/safari-extension-content": "0.0.14",
-    "babel-core": "^6.24.1",
-    "babel-loader": "^7.0.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
-    "webpack": "^3.10.0"
-  },
-  "babel": {
-    "presets": [
-      "es2015",
-      "stage-3"
-    ],
-    "plugins": [
-      "transform-runtime"
-    ]
+    "npm-run-all": "^4.1.3",
+    "ts-loader": "^4.3.1",
+    "typescript": "^2.9.1",
+    "webpack": "^4.11.0",
+    "webpack-command": "^0.2.0"
   }
 }

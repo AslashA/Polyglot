@@ -3,22 +3,39 @@ const { resolve } = require('path')
 const extensionPath = resolve(__dirname, 'Polyglot.safariextension')
 
 module.exports = {
-  context: extensionPath,
+  mode: 'development',
   entry: {
-    global: ['./global.js'],
-    injected: ['./injected.js'],
+    global: ['./src/global/global.ts'],
+    content: ['./src/content/content.ts'],
   },
   output: {
     path: extensionPath,
     filename: '[name].entry.js',
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader',
+        test: /\.ts$/,
+        loader: 'ts-loader',
+        include: '/src/content/*.ts',
+        exclude: /node_modules/,
+        options: {
+          instance: 'content',
+          configFile: './tsconfig.content.json',
+        },
+      },
+      {
+        test: /\.ts$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/,
+        options: {
+          instance: 'global',
+          configFile: './tsconfig.global.json',
+        },
       },
     ],
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
   },
 }

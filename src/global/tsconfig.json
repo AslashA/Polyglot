@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig",
+  "compilerOptions": {
+    "types": [
+      "safari-extension-content"
+    ]
+  },
+  "include": [
+    "./src/content/*",
+    "./src/types/*"
+  ]
+}
